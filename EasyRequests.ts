@@ -1,5 +1,7 @@
 class RequestFromApi {
 
+    protected base_url = "http://localhost:3000";
+
     private getBaseHeaders(): HeadersInit {
         return {
             'Content-Type': 'application/json',
@@ -18,7 +20,7 @@ class RequestFromApi {
 
     async GetRequestWithToken(token: string, url: string) {
         try {
-            const response = await fetch(url, {
+            const response = await fetch(this.base_url+url, {
                 headers: this.getAuthHeaders(token),
             });
             if (!response.ok) {
@@ -32,7 +34,7 @@ class RequestFromApi {
 
     async GetRequestWithoutToken(url: string) {
         try {
-            const response = await fetch(url, {
+            const response = await fetch(this.base_url+url, {
                 headers: this.getBaseHeaders(),
             });
             if (!response.ok) {
@@ -46,7 +48,7 @@ class RequestFromApi {
 
     async PostRequestWithToken(token: string, url: string, body: any) {
         try {
-            const response = await fetch(url, {
+            const response = await fetch(this.base_url+url, {
                 method: 'POST',
                 headers: this.getAuthHeaders(token),
                 body: JSON.stringify(body),
@@ -62,7 +64,7 @@ class RequestFromApi {
 
     async PostRequestWithoutToken(url: string, body: any) {
         try {
-            const response = await fetch(url, {
+            const response = await fetch(this.base_url+url, {
                 body: JSON.stringify(body),
                 method: 'POST',
                 headers: this.getBaseHeaders(),
@@ -78,7 +80,7 @@ class RequestFromApi {
 
     async DeleteRequestWithToken(token: string, url: string) {
         try {
-            const response = await fetch(url, {
+            const response = await fetch(this.base_url+url, {
                 headers: this.getAuthHeaders(token),
                 method: "DELETE"
             })
@@ -90,7 +92,7 @@ class RequestFromApi {
 
     async DeleteRequestWithoutToken(url: string) {
         try {
-            const response = await fetch(url, {
+            const response = await fetch(this.base_url+url, {
                 headers: this.getBaseHeaders(),
                 method: "DELETE"
             })
@@ -102,7 +104,7 @@ class RequestFromApi {
 
     async PutRequestWithToken(token: string, url: string, body: any) {
         try {
-            const response = await fetch(url, {
+            const response = await fetch(this.base_url+url, {
                 method: 'PUT',
                 headers: this.getAuthHeaders(token),
                 body: JSON.stringify(body),
@@ -118,7 +120,7 @@ class RequestFromApi {
 
     async PutRequestWithoutToken(url: string, body: any) {
         try {
-            const response = await fetch(url, {
+            const response = await fetch(this.base_url+url, {
                 method: 'PUT',
                 headers: this.getBaseHeaders(),
                 body: JSON.stringify(body),
@@ -134,7 +136,7 @@ class RequestFromApi {
 
     async PatchRequestWithToken(token: string, url: string, body: any) {
         try {
-            const response = await fetch(url, {
+            const response = await fetch(this.base_url+url, {
                 method: 'PATCH',
                 headers: this.getAuthHeaders(token),
                 body: JSON.stringify(body),
@@ -150,7 +152,7 @@ class RequestFromApi {
 
     async PatchRequestWithoutToken(url: string, body: any) {
         try {
-            const response = await fetch(url, {
+            const response = await fetch(this.base_url+url, {
                 method: 'PATCH',
                 headers: this.getBaseHeaders(),
                 body: JSON.stringify(body),
